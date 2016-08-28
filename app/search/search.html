@@ -1,0 +1,74 @@
+<div class="container" xmlns="http://www.w3.org/1999/html">
+
+      <div class="blog-header">
+        <h1 class="blog-title">Drop and Share</h1>
+        <p class="lead blog-description">When your Files are open for your team</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+
+            <div class="input-group">
+              <!--<input type="text" class="form-control" placeholder="file name or tags" aria-describedby="basic-addon2">-->
+              <tags-input ng-model="to_find" placeholder="file name or tags" display-property="name">
+                  <auto-complete source="loadTags($query)"></auto-complete>
+              </tags-input>
+              <span class="input-group-btn" style="padding-left:3px;">
+                  <button class="btn btn-primary" ng-click="filter(to_find);">Find</button>
+                  <button class="btn btn-default" ng-click="is_extend=!is_extend;">...</button>
+              </span>
+            </div>
+            <pre ng-show="is_extend">Some serch parameters here</pre>
+
+
+            <br>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>DateTime</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="file in files" title="click to copy file link" ng-click="copy(file.path);"
+                    style="font-size:0.8em;">
+                  <td>{{ file.file }}</td>
+                  <td>{{ file.metadata.mime_type }}</td>
+                  <td>{{ file.date }}</td>
+                  <td>
+                    <a href="">
+                      <img src="components/img/copy.png" width="30px;"/>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          <nav>
+            <ul class="pager">
+              <li><a href="" ng-click="prev();">Previous</a></li>
+              <li><a href="" ng-click="next();">Next</a></li>
+            </ul>
+          </nav>
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <div ng-include src="'templates/tags.html'"></div>
+            <div ng-include src="'templates/archives.html'"></div>
+
+
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
