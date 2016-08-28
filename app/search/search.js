@@ -9,8 +9,8 @@ angular.module('flatDocker.search', ['ngRoute', 'angular-clipboard'])
   });
 }])
 
-.controller('SearchCtrl', ['$scope','clipboard', 'TagsService', 'FilesService',
-                          function($scope, clipboard, TagsService, FilesService) {
+.controller('SearchCtrl', ['$scope','clipboard', 'TagsService', 'FilesService', '$location',
+                          function($scope, clipboard, TagsService, FilesService, $location ) {
 
 ///////////////////////////////////////
 //
@@ -58,7 +58,7 @@ angular.module('flatDocker.search', ['ngRoute', 'angular-clipboard'])
 
   function copy(path){
     // alert(path);
-    clipboard.copyText(path);
+    clipboard.copyText($location.host() + path);
   }
 
   function next(){
